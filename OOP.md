@@ -5,46 +5,65 @@
 - PHP에서 클래스를 가지고 객체를 생성 사용한다.
 
 ### 객체의 5가지 특징
-- 
+- 추상화(abstraction)
 
-가 무슨 말이나면
+- 캡슐화(encapsulation)
 
-- class를 붕어빵 틀이라고 가정해보자.
-- class를 정의한다.
+- 정보 은닉(data hiding)
+
+- 상속성(inheritance)
+
+- 다형성(polymorphism)
+
+이게 무슨 말이나면
+
+- class를 붕어빵 틀이라고 가정해보자.(이해를 돕기위한 예시일 뿐...)
+- 붕어빵 틀을 설계한다.(class를 정의한다.)
 ```php 
     class fishTool{
-        $name = "붕어빵"
+        // 붕어빵이름
+        $name 
         // 밀가루
         $flour   
         // 팥 
         $redBean
-        function jump(){
-            echo "up!up!";
+        function fire($name, $flour, $redBean){
+            echo ($name."의 붕어빵이 완성 되었습니다."."밀가루 :".$flour."팥 :".$redBean)
         }
     }
 ```
-- 생성한 객체를 
-- 
-  
 
+- 생성된 틀을 이용해 객체를 만든다.
+- 인스턴스 생성
+
+```php
+    // $객체명 =  new 클래스이름(인수1,인수1)
+    $tool1 = new fishTool
+```
+
+- 이후 해당 프로퍼티 혹은 메서드에 접근할 수 있다.
+
+- 설계한 틀에 $name, $flour, $redBean은 프로퍼티 
+  
 - 프로퍼티(property)
 ```php
-    $man->name = "홍길동";
-    $man->age = 24;
-    $man->footSize = 260;
+    $tool1->name = "홍길동";
+    $tool1->flour = 24;
+    $tool1->redBean = 260;
 ```
+
+- 설계한 틀에 fire()은 메서드
+  
 - 메서드(method)
-
 ```php
-    $man->jump();
-    $man->run();
+    $tool1->fire();
 ```
-인스턴스(instance)
-```php
-    class man{
-        $name = "홍길동";
-    }
-    // 인스턴스화 시키다
-    $me = new man(); 
 
+- 객체 내부에서 해당 인스턴스의 프로퍼티에 접근하려고 할 때 
+- $this 변수를 사용
+  
+```php
+    $this->fire();
 ```
+
+
