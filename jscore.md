@@ -29,7 +29,7 @@
     var a = 1
     function outer(){
         var b =2;
-        console.log(a)
+        console.log(a)// 1
         function inner(){
             var c =3;
             console.log(b);
@@ -38,8 +38,8 @@
         inner();// 2 , 1;
     }
     outer();
-
-    console.log(c);
+    // 1, 2, 1
+    console.log(c); // c is not defind
 ```
 ## Lexical scope(정적 범위)
 - 한번 !선언! 된 이상 선언 된 기준으로 스코프를 찾아본다. 
@@ -160,12 +160,15 @@
 - 반복문의 클로저
 
 ```js
-    var i
-    for (i = 0; i < 5; i++ ) {
-        setTimeout(function() {
-            console.log(i);
-        }, 100);
+    function count(){
+        var i
+        for (i = 0; i < 5; i++ ) {
+            setTimeout(function() {
+                console.log(i);
+            }, 100);
+        }
     }
+        count();
     // 결과
     // 5
     // 5
@@ -174,14 +177,18 @@
     // 5
    
 // 순차적으로 출력하기 하기 위한 조치
-   var i
-    for (i = 0; i < 10; i++ ) {
-        (function(j){
-        setTimeout(function() {
-            console.log(j);
-        }, 100);
-    })(i);
+   
+   function count(){
+        var i
+            for (i = 0; i < 10; i++ ) {
+                (function(j){
+                setTimeout(function() {
+                    console.log(j);
+                }, 100);
+            })(i);
+        }
     }
+    count();
     //결과
     // 1
     // 2
