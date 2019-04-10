@@ -42,10 +42,58 @@
     console.log(c);
 ```
 ## Lexical scope(정적 범위)
-- 렉시컬 스코프란 어디서 호출하는지가 아니라 어떤 스코프에서 선언하였는지에 따라 결정된다.
-- 
-##호이스팅
+- 한번 !선언! 된 이상 선언 된 기준으로 스코프를 찾아본다. 
+-  어디서 호출하는지가 아니라 어떤 스코프에서 선언하였는지에 따라 결정된다.
+- 동적 스코프의 반댓말
 ```js
+    var a = 'global';
+
+    function text(){
+        console.log(a); 
+    }
+
+    function read(){
+        var a = 'read';
+        foo();
+    }
+    read();
+```
+- 해당 문제를 해결 하기 위해서는 지역변수 read 함수에 var a 를 선언하지말고 전역 변수의 값을 바꾸어 주면 된다.
+
+```js
+
+    var a = 'global';
+
+    function text(){
+        console.log(a); 
+    }
+
+    function read(){
+        a = 'read';
+        foo();
+    }
+    read();
+
+
+```
+##호이스팅
+
+- 끌어올린다는 사전적 어원이다.
+- 변수와 함수 모두 호이스팅이 된다.
+- 함수 안에 변수를 선언할 때 어떤 위치에 있던 함수의 시작 위치로 끌어올린다.
+
+```js
+    // 변수의 호이스팅
+
+    function foo(){
+        // var a; 가 있는 것과 같다.
+        console.log(a); //udefined
+        var a = 100;
+        console.log(a); //100
+    }
+
+    // 함수의 호이스팅
+
     function human(name){
         console.log("My name is" + name);
     }
@@ -60,12 +108,29 @@
     }
 
     // My name is kim
+
+    // 함수 표현식에서는 오류 발생
+    human("kim"); // human is not a function
+
+    var human = function(name){
+        console.log("My name is" + name);
+    }
+    // 이는 아래와 같기 때문이다.
+    // human 선언을 위로 호이스팅 해버린다.
+
+    var human;
+
+    human("kim");
+
+    human = function(name){
+        console.log("My name is" + name);
+    }
     
 ```
 
 
 
-##클로저
+##Closure(클로저)
 
 ```js
     var base = "name is :";
