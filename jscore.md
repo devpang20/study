@@ -54,9 +54,9 @@
 
     function read(){
         var a = 'read';
-        foo();
+        text();
     }
-    read();
+    read(); // global
 ```
 - 해당 문제를 해결 하기 위해서는 지역변수 read 함수에 var a 를 선언하지말고 전역 변수의 값을 바꾸어 주면 된다.
 
@@ -189,5 +189,8 @@
     // 4
     // 5
 ```
+- 실제 클로저 활용
+ [바로가기](https://codepen.io/wepholic/pen/wZJaWg)
+
 - 이해한 개념을 통해 실제 코드 작성시 응용해본다.
 
